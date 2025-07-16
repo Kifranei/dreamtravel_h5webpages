@@ -19,6 +19,85 @@ body {
     font-size: 1.5rem;
 }
 
+/* 确保导航栏在所有页面都有正确的颜色 */
+.navbar.navbar-dark.bg-primary {
+    background-color: var(--primary-color) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar.navbar-dark .navbar-brand {
+    color: #ffffff !important;
+}
+
+.navbar.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar.navbar-dark .navbar-nav .nav-link:hover,
+.navbar.navbar-dark .navbar-nav .nav-link:focus {
+    color: #ffffff !important;
+}
+
+.navbar.navbar-dark .navbar-nav .nav-link.active {
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.navbar.navbar-dark .btn-outline-light {
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.navbar.navbar-dark .btn-outline-light:hover {
+    background-color: #ffffff !important;
+    color: var(--primary-color) !important;
+    border-color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 修复活跃状态的预订按钮样式 */
+.navbar.navbar-dark .btn-outline-light.active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+/* 修复活跃状态按钮的悬停效果 */
+.navbar.navbar-dark .btn-outline-light.active:hover {
+    background-color: #ffffff !important;
+    color: var(--primary-color) !important;
+    border-color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 强制导航栏按钮悬停样式 - 最高优先级 */
+.navbar-dark .btn.btn-outline-light:not(.active):hover {
+    background-color: #ffffff !important;
+    color: #0066cc !important;
+    border-color: #ffffff !important;
+}
+
+.navbar-dark .btn.btn-outline-light.active:hover {
+    background-color: #ffffff !important;
+    color: #0066cc !important;
+    border-color: #ffffff !important;
+}
+
+/* 确保非悬停状态正确 */
+.navbar-dark .btn.btn-outline-light:not(.active) {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.navbar-dark .btn.btn-outline-light.active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
 /* 英雄区域样式 */
 .hero-section {
     position: relative;

@@ -18,14 +18,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tours.html">套餐</a></li>
                     <li class="nav-item"><a class="nav-link" href="destinations.html">目的地</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tours.html">旅游套餐</a></li>
                     <li class="nav-item"><a class="nav-link" href="hotels.html">酒店</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">图库</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">关于我们</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">美景欣赏</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">关于</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">联系我们</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-outline-light ms-2 active" href="booking.html">立即预订</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-light ms-2" href="booking.html">立即预订</a></li>
                 </ul>
             </div>
         </div>
@@ -364,9 +364,9 @@
                     <h6>快速链接</h6>
                     <ul class="list-unstyled">
                         <li><a href="destinations.html" class="text-light text-decoration-none">目的地</a></li>
-                        <li><a href="tours.html" class="text-light text-decoration-none">旅游套餐</a></li>
+                        <li><a href="tours.html" class="text-light text-decoration-none">套餐</a></li>
                         <li><a href="hotels.html" class="text-light text-decoration-none">酒店</a></li>
-                        <li><a href="gallery.html" class="text-light text-decoration-none">图库</a></li>
+                        <li><a href="gallery.html" class="text-light text-decoration-none">美景欣赏</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
@@ -416,13 +416,14 @@
                         price: parseInt(this.dataset.price),
                         name: this.closest('.card').querySelector('.card-title').textContent
                     };
-                    
-                    // 更新选中状态
+                    // 按钮高亮
+                    document.querySelectorAll('.select-destination').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    // 更新选中卡片高亮
                     document.querySelectorAll('.destination-option').forEach(card => {
                         card.classList.remove('border-primary');
                     });
                     this.closest('.destination-option').classList.add('border-primary');
-                    
                     // 更新下一步按钮状态
                     nextBtn.disabled = false;
                 });
@@ -606,6 +607,19 @@
             // 初始化
             updateStep();
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const currentPage = window.location.pathname.split('/').pop();
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
     </script>
     
     <style>
@@ -646,6 +660,12 @@
         
         .destination-option:hover {
             transform: translateY(-5px);
+        }
+        .select-destination.active {
+            background: var(--primary-color) !important;
+            color: #fff !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            border: none !important;
         }
         
         .payment-option {

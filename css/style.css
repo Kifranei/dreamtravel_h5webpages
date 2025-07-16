@@ -1,3 +1,9 @@
+@media (max-width: 991.98px) {
+    .page-header {
+        padding-top: 72px !important; /* 手机端导航栏高度加大，防止内容被遮挡 */
+    }
+    z-index: 1050;
+}
 /* 自定义样式 */
 :root {
     --primary-color: #0066cc;
@@ -10,10 +16,14 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    padding-top: 76px; /* 为固定导航栏留出空间 */
+    padding-top: 0 !important; /* 彻底去除body顶部白边 */
 }
 
 /* 导航栏样式 */
+/* 修复导航栏 fixed-top 层级问题，确保不被内容覆盖 */
+.navbar.fixed-top {
+    z-index: 1055 !important;
+}
 .navbar-brand {
     font-weight: bold;
     font-size: 1.5rem;
@@ -22,7 +32,7 @@ body {
 /* 确保导航栏在所有页面都有正确的颜色 */
 .navbar.navbar-dark.bg-primary {
     background-color: var(--primary-color) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.1);  移除白边 */
 }
 
 .navbar.navbar-dark .navbar-brand {
@@ -30,16 +40,16 @@ body {
 }
 
 .navbar.navbar-dark .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: rgba(255, 255, 255, 0.7) !important; /* Default light white */
 }
 
 .navbar.navbar-dark .navbar-nav .nav-link:hover,
 .navbar.navbar-dark .navbar-nav .nav-link:focus {
-    color: #ffffff !important;
+    color: #ffffff !important; /* Hover effect in white */
 }
 
 .navbar.navbar-dark .navbar-nav .nav-link.active {
-    color: #ffffff !important;
+    color: #FFD700 !important; /* Highlight current page in yellow */
     font-weight: 500;
 }
 
@@ -274,6 +284,10 @@ body {
     .display-5 {
         font-size: 2rem;
     }
+    
+    .page-header {
+        margin-top: 60px; /* Add spacing to prevent text from being blocked */
+    }
 }
 
 /* 动画效果 */
@@ -369,12 +383,18 @@ body {
 
 /* 页面特定样式 */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-color), #004d99);
+    background: var(--primary-color); /* Unified color with the navigation bar */
     color: white;
-    padding: 6rem 0 4rem 0;
-    margin-top: -76px;
-    padding-top: 9rem;
+    padding: 4rem 0 2rem 0;
+    padding-top: 76px; /* Consistent with navigation bar height */
 }
+
+@media (max-width: 991.98px) {
+    .page-header {
+        padding-top: 56px !important; /* 响应式导航栏高度 */
+    }
+}
+
 
 .breadcrumb {
     background: transparent;

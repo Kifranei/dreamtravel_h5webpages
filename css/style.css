@@ -495,3 +495,10 @@ body {
     border: 3px solid white;
     box-shadow: 0 0 0 3px var(--primary-color);
 }
+
+/* 回到顶部箭头样式 */
+.fa-arrow-up {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

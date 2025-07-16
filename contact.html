@@ -216,14 +216,7 @@
                         <div class="card-body p-0">
                             <!-- 地图占位区域 -->
                             <div class="map-placeholder bg-secondary d-flex align-items-center justify-content-center" style="height: 400px;">
-                                <div class="text-center text-white">
-                                    <i class="fas fa-map fa-3x mb-3"></i>
-                                    <h5>互动地图</h5>
-                                    <p>北京市朝阳区建国门外大街1号国贸大厦A座28层</p>
-                                    <button class="btn btn-outline-light" onclick="openMap()">
-                                        <i class="fas fa-external-link-alt"></i> 在地图中查看
-                                    </button>
-                                </div>
+                                <!-- 地图将通过JavaScript延迟加载 -->
                             </div>
                         </div>
                     </div>
@@ -466,6 +459,89 @@
                 } else {
                     link.classList.remove('active');
                 }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 微信客服弹窗
+            const wechatButton = document.querySelector('.btn-outline-success');
+            wechatButton.addEventListener('click', function() {
+                const modal = document.createElement('div');
+                modal.classList.add('modal', 'fade');
+                modal.setAttribute('tabindex', '-1');
+                modal.setAttribute('role', 'dialog');
+
+                const modalDialog = document.createElement('div');
+                modalDialog.classList.add('modal-dialog', 'modal-dialog-centered');
+                modalDialog.setAttribute('role', 'document');
+
+                const modalContent = document.createElement('div');
+                modalContent.classList.add('modal-content');
+
+                const modalBody = document.createElement('div');
+                modalBody.classList.add('modal-body', 'text-center');
+
+                const qrImage = document.createElement('img');
+                qrImage.src = 'img/qrcode.png'; // 替换为实际的二维码图片路径
+                qrImage.style.maxWidth = '100%';
+                qrImage.style.borderRadius = '10px';
+                qrImage.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.3)';
+
+                const closeButton = document.createElement('button');
+                closeButton.classList.add('btn', 'btn-secondary', 'mt-3');
+                closeButton.textContent = '关闭';
+                closeButton.addEventListener('click', function() {
+                    modal.classList.remove('show');
+                    document.body.removeChild(modal);
+                });
+
+                modalBody.appendChild(qrImage);
+                modalBody.appendChild(closeButton);
+                modalContent.appendChild(modalBody);
+                modalDialog.appendChild(modalContent);
+                modal.appendChild(modalDialog);
+                document.body.appendChild(modal);
+
+                modal.classList.add('show');
+                modal.style.display = 'block';
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // QQ在线客服跳转
+            document.querySelector('.btn-outline-primary').addEventListener('click', function() {
+                window.open('https://wpa.qq.com/msgrd?v=3&uin=123456789&site=qq&menu=yes', '_blank');
+            });
+
+            // Skype视频跳转
+            document.querySelector('.btn-outline-info').addEventListener('click', function() {
+                window.open('skype:dreamtravel_china?call', '_blank');
+            });
+
+            // 在线客服对话框
+            document.querySelector('.btn-outline-warning').addEventListener('click', function() {
+                alert('在线客服对话框功能暂未实现，请稍后再试！');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 延迟加载百度地图
+            const mapPlaceholder = document.querySelector('.map-placeholder');
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://map.baidu.com/?center=116.403874,39.914888&zoom=15&width=600&height=400&markers=116.403874,39.914888&markerStyles=l,A';
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.style.border = '0';
+            iframe.setAttribute('allowfullscreen', '');
+
+            // 延迟加载逻辑
+            setTimeout(() => {
+                mapPlaceholder.appendChild(iframe);
+            }, 3000); // 延迟3秒加载地图
+
+            // 防止页面滚动到地图位置
+            iframe.addEventListener('load', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
     </script>
